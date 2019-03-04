@@ -1,13 +1,13 @@
 <?php
 
-namespace module\main\entity\event;
+namespace module\event\entity;
 
 use Exception;
 use module\main\Entity;
 use module\main\driver\ServiceClient;
 use module\main\driver\Authentication;
 
-class Person implements Entity
+class Event_Person_PersonId implements Entity
 {
 
     public function __construct()

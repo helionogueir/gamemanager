@@ -1,4 +1,5 @@
 {
     "http:404": "Página não encontrada",
+    "http:rollback": "Clique aqui  para voltar para página principal",
     "driver:service:notfound": "A API (serviço) \":{servicename}\" não está respondendo, ou não está configurado"
 }

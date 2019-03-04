@@ -2,10 +2,10 @@
 
 namespace module\event\usecase;
 
-use module\main\entity\event\Person;
 use module\main\UseCase;
+use module\event\entity\Event_Person_PersonId;
 
-class SeekEvents implements UseCase
+class SeekAllEvents implements UseCase
 {
 
     public function __construct()
@@ -16,7 +16,7 @@ class SeekEvents implements UseCase
     public function seek(int $personid): array
     {
         $data = array();
-        if ($rowSet = (new Person())->get($personid)) {
+        if ($rowSet = (new Event_Person_PersonId())->get($personid)) {
             $data = $rowSet;
         }
         return $data;

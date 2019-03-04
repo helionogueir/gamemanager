@@ -5,7 +5,7 @@ namespace module\auth\usecase;
 use stdClass;
 use module\main\UseCase;
 use module\main\driver\UserSession;
-use module\main\entity\person\Auth;
+use module\auth\entity\Person_Auth_Username;
 use module\main\usecase\TranslateToLanguage;
 
 class AuthUserByCredentials implements UseCase
@@ -24,7 +24,7 @@ class AuthUserByCredentials implements UseCase
         $response->redirect = null;
         $response->message = $lang->translate('auth:login:error', 'auth');
         if (!empty($username) && !empty($password)) {
-            if ($person = (new Auth())->get($username, $password)) {
+            if ($person = (new Person_Auth_Username())->get($username, $password)) {
                 if ((new UserSession())->create($person)) {
                     $response->success = true;
                     $response->redirect = '/admin';

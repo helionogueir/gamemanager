@@ -1,4 +1,4 @@
-module.exports = class SeekEvents {
+module.exports = class SeekAllEvents {
 
     constructor(db) {
         this._db = db;
@@ -11,8 +11,7 @@ module.exports = class SeekEvents {
             SELECT
                 eeg.eventid,
                 ee.name,
-                ee.description,
-                ee.format
+                ee.description
             FROM db_event.event_guest eeg
             INNER JOIN db_team.team tt
                 ON tt.id = eeg.teamid

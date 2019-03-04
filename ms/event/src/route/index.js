@@ -21,16 +21,16 @@ router.options('/*', function (req, res) {
   }
 });
 
-router.get('/:personid', function (req, res) {
+router.get('/:eventid/person/:personid', function (req, res) {
   try {
-    if ((undefined !== req.params.personid) && (undefined !== req.headers['authorization'])) {
+    if ((undefined !== req.params.eventid) &&
+      (undefined !== req.params.personid) &&
+      (undefined !== req.headers['authorization'])) {
       (new AuthorizePerson()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
         if (isAuthorized) {
-          (new EventByPerson()).seekAllByPersonId(req.params.personid, (result) => {
-            let total = (result instanceof Array) ? result.length : 0;
-            let code = (total) ? 200 : 404;
+          (new EventByPerson()).seekRowByPersonId(req.params.eventid, req.params.personid, (result) => {
+            let code = (result) ? 200 : 404;
             (new Response()).format(code, result, (response) => {
-              res.header("X-Total-Count", total);
               res.statusCode = response.statusCode;
               res.send(response);
             });

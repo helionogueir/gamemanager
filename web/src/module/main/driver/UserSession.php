@@ -17,6 +17,8 @@ class UserSession
 
     public function create(stdClass $person): bool
     {
+        if (isset($_SESSION['USER']))
+            unset($_SESSION['USER']);
         $_SESSION['USER'] = $person;
         return !empty($this->get());
     }

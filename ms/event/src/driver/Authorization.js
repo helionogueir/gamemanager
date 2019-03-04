@@ -1,6 +1,6 @@
 const jsonwebtoken = require("jsonwebtoken");
 
-module.exports = class Jwt {
+module.exports = class Authorization {
 
     verify(token, credential, next) {
         try {

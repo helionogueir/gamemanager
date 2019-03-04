@@ -48,7 +48,6 @@ services:
         command: "npm start"
         depends_on:
             - dbsql
-            - msperson
     web:
         image: gamemanager/ec2
         mem_limit: 2G

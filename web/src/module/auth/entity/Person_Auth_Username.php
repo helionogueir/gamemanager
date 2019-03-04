@@ -1,12 +1,12 @@
 <?php
 
-namespace module\main\entity\person;
+namespace module\auth\entity;
 
 use Exception;
 use module\main\Entity;
 use module\main\driver\ServiceClient;
 
-class Auth implements Entity
+class Person_Auth_Username implements Entity
 {
 
     public function __construct()

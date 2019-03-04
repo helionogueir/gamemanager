@@ -10,13 +10,15 @@ try {
     extended: false
   }));
   server.use((req, res, next) => {
+    res.header("Content-Type", "application/json");
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type,X-Total-Count,Authorization");
     next();
   });
   (new Route()).list((resources) => {
     for (let [key, value] of Object.entries(resources)) {
-      server.use(`/${key}`, require(value));
+      let routename = ('index' == key) ? '' : key;
+      server.use(`/${routename}`, require(value));
       console.info(key, value);
     }
     server.listen(3000, () => {
