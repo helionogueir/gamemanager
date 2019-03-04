@@ -1,0 +1,6 @@
+{
+    "page:title": "GameManager",
+    "login:username": "email",
+    "login:password": "senha",
+    "login:signin": "signIn"
+}

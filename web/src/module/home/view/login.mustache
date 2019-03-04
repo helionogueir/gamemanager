@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ CFG.environment.lang }}">
+    <head>
+        <meta charset="{{ CFG.environment.charset }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Helio Nogueira">
+        <title>{{# lang }}page:title,home{{/ lang }}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/main/assets/bootstrap/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="/home/assets/main.css" rel="stylesheet">
+    </head>
+    <body class="text-center">
+        <form class="form-signin" onsubmit="return (new Home()).sigIn(this)">
+            <img class="mb-4" src="/home/assets/image/logo-512.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">{{# lang }}page:title,home{{/ lang }}</h1>
+            <label for="username" class="sr-only">{{# lang }}login:email,home{{/ lang }}</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="{{# lang }}login:username,home{{/ lang }}" required autofocus>
+            <label for="password" class="sr-only">{{# lang }}login:password,home{{/ lang }}</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="{{# lang }}login:password,home{{/ lang }}" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">{{# lang }}login:signin,home{{/ lang }}</button>
+            <div class="home-login-error alert alert-danger" role="alert"></div>
+            <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+        </form>
+        <script src="/main/assets/jquery/jquery.min.js"></script>
+        <script src="/auth/assets/Auth.js"></script>
+        <script src="/home/assets/Home.js"></script>
+    </body>
+</html>

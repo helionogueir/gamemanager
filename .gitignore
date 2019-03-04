@@ -1,0 +1,5 @@
+/dbsql/mysql
+/ms/*/node_modules
+/web/src/log
+/web/src/cache
+/web/src/vendor

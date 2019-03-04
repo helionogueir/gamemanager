@@ -1,0 +1,20 @@
+{
+    "environment": {
+        "default": "home",
+        "charset": "utf-8",
+        "lang": "pt-br",
+        "debug": true
+    },
+    "service": {
+        "person": {
+            "uri": "http://msperson",
+            "port": 3000,
+            "timeout": 2
+        },
+        "event": {
+            "uri": "http://msevent",
+            "port": 3000,
+            "timeout": 2
+        }
+    }
+}

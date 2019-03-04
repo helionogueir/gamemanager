@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ CFG.environment.lang }}">
+    <head>
+        <meta charset="{{ CFG.environment.charset }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Helio Nogueira">
+        <title>{{# lang }}page:title,main{{/ lang }}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/main/assets/bootstrap/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <style>
+            .http-page {
+                width: 100%;
+                max-width: 330px;
+                padding: 15px;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body class="text-center">
+        <div class="http-page">
+            <h2>{{ statusCode }}</h2>
+            <p>{{ statusMessage }}</p>
+        </div>
+    </body>
+</html>

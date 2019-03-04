@@ -1,0 +1,26 @@
+{
+  "name": "msevent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js",
+    "pretest": "npm install",
+    "test": "/* ./node_modules/mocha/bin/mocha ./test/business */"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helionogueir/gamemanager"
+  },
+  "author": "Helio Noghueira <helio.nogueir@gmail>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.18.*",
+    "express": "4.16.*",
+    "jsonwebtoken": "8.5.*",
+    "knex": "0.16.*",
+    "mocha": "6.0.*",
+    "mysql": "2.16.*"
+  }
+}

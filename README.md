@@ -1,2 +1,2 @@
-# gamemanager-
-Game Manager
+# gamemanager
+Game Manager Platform.

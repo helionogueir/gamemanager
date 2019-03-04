@@ -1,0 +1,4 @@
+{
+    "http:404": "Página não encontrada",
+    "driver:service:notfound": "A API (serviço) \":{servicename}\" não está respondendo, ou não está configurado"
+}

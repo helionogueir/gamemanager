@@ -1,0 +1,21 @@
+{
+    "name": "gamemanager/webpp",
+    "description": "Web Application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Helio Nogueira",
+            "email": "helio.nogueir@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "module\\": "module"
+        }
+    },
+    "require": {
+        "mustache/mustache": "2.*",
+        "guzzlehttp/guzzle": "6.*",
+        "firebase/php-jwt": "5.*"
+    }
+}
