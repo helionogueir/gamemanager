@@ -48,8 +48,26 @@ services:
         command: "npm start"
         depends_on:
             - dbsql
+    msmatch:
+        image: node:8.10
+        mem_limit: 1G
+        volumes:
+            - ./ms/match:/var/www/app
+        environment:
+            NODE_ENV: development
+            DSN_HOST_READ: dbsql
+            DSN_HOST_WRITE: dbsql
+            DSN_USERNAME: root
+            DSN_PASSWORD: root
+            DSN_DBNAME: db_person
+            DSN_CHARSET: "utf8"
+            DSN_PORT: 3306
+        working_dir: /var/www/app
+        command: "npm start"
+        depends_on:
+            - dbsql
     web:
-        image: gamemanager/ec2
+        image: gamemanager/web
         mem_limit: 2G
         cpuset: 0,1
         ports:

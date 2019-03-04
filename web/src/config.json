@@ -15,6 +15,11 @@
             "uri": "http://msevent",
             "port": 3000,
             "timeout": 2
+        },
+        "match": {
+            "uri": "http://msmatch",
+            "port": 3000,
+            "timeout": 5
         }
     }
 }

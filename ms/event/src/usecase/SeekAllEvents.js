@@ -9,18 +9,18 @@ module.exports = class SeekAllEvents {
         try {
             let sql = `
             SELECT
-                eeg.eventid,
+                eg.eventid,
                 ee.name,
                 ee.description
-            FROM db_event.event_guest eeg
+            FROM db_event.guest eg
             INNER JOIN db_team.team tt
-                ON tt.id = eeg.teamid
+                ON tt.id = eg.teamid
                 AND tt.state = 1
             INNER JOIN db_event.event ee
-                ON ee.id = eeg.eventid
+                ON ee.id = eg.eventid
                 AND ee.state = 1
             WHERE tt.ownerid = :personid
-            GROUP BY eeg.eventid
+            GROUP BY eg.eventid
             `;
             this._db.raw(sql, new Object({
                 personid: personid

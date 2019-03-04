@@ -1,30 +1,21 @@
-module.exports = class SeekEvent {
+module.exports = class SeekCredential {
 
     constructor(db) {
         this._db = db;
         Object.freeze(this);
     }
 
-    seek(eventid, personid, next) {
+    seek(personid, next) {
         try {
             let sql = `
             SELECT
-                eg.eventid,
-                ee.name,
-                ee.description
-            FROM db_event.guest eg
-            INNER JOIN db_team.team tt
-                ON tt.id = eg.teamid
-                AND tt.state = 1
-            INNER JOIN db_event.event ee
-                ON ee.id = eg.eventid
-                AND ee.state = 1
-            WHERE eg.eventid = :eventid
-            AND  tt.ownerid = :personid
-            GROUP BY eg.eventid
+                u.accesskey,
+                u.secretkey
+            FROM user u
+            WHERE u.personid = :personid
+            AND u.state = 1
             `;
             this._db.raw(sql, new Object({
-                eventid: eventid,
                 personid: personid
             })).asCallback(function (err, result) {
                 if (err) throw err;
