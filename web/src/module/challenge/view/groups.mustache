@@ -2,11 +2,14 @@
     <h2 class="display-4">{{# lang }}title,challenge{{/ lang }}</h2>
     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus suscipit nunc, et vehicula urna vestibulum ac. Nam quis turpis a enim accumsan commodo at a ex. Aenean sed ante sit amet risus malesuada placerat. Nulla facilisi. Nam pellentesque ligula vel fermentum efficitur. Aenean gravida orci diam, eu laoreet enim placerat quis. Duis erat nulla, tincidunt nec aliquam ac, feugiat id lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 </div>
-
+{{# stages }}
+<hr>
+<h3 class="text-center"><strong>{{ title }}</strong></h3>
+<br>
 <div class="row">
-    {{# groups }}
-    <div class="col-md-4">
-        <div class="card mb-4 shadow-sm challenge-group" data-id="{{ id }}">
+    {{# values }}
+    <div class="col-md-3">
+        <div class="card mb-3 shadow-sm challenge-group" data-id="{{ id }}">
             <div class="card-body">
                 <h3 class="card-title">{{ name }}</h3>
                 <div class="challenge-group-info"></div>
@@ -18,5 +21,6 @@
             </div>
         </div>
     </div>
-    {{/ groups }}
+    {{/ values }}
 </div>
+{{/ stages }}
