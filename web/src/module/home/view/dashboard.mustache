@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ CFG.environment.lang }}">
+    <head>
+        <meta charset="{{ CFG.environment.charset }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Helio Nogueira">
+        <title>{{# lang }}head:title,home{{/ lang }}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/main/assets/bootstrap/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <!-- Custom styles for this template -->
+        <link href="/admin/assets/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="alert alert-secondary text-right" role="alert">
+            <span>{{ USER.nickname }},&nbsp;</span>
+            <a href="/auth/logout" class="alert-link">{{# lang }}auth:logout,auth{{/ lang }}</a>
+        </div>
+        <div class="dashboard-container container-fluid"></div>
+        <script src="/main/assets/jquery/jquery.min.js"></script>
+        <script src="/main/assets/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="/challenge/assets/Challenge.js"></script>
+        <script src="/home/assets/Dashboard.js"></script>
+        <script>
+            $(document).ready(function () {
+                var docuemntObject = this;
+                Dashboard.page('/challenge/groups', function (htmlText) {
+                    $('.dashboard-container', docuemntObject).html(htmlText);
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -4,14 +4,15 @@ services:
         image: mysql:5.6
         mem_limit: 2G
         cpuset: 0,1
-        ports:
-            - 3306:3306
         volumes:
             - ./dbsql/mysql:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
         restart: always
         command: --default-authentication-plugin=mysql_native_password
+        # REMOVER
+        ports:
+            - 3306:3306
     msperson:
         image: node:8.10
         mem_limit: 1G
@@ -23,49 +24,32 @@ services:
             DSN_HOST_WRITE: dbsql
             DSN_USERNAME: root
             DSN_PASSWORD: root
-            DSN_DBNAME: db_person
+            DSN_DBNAME: person
             DSN_CHARSET: "utf8"
             DSN_PORT: 3306
         working_dir: /var/www/app
         command: "npm start"
         depends_on:
             - dbsql
-    msevent:
+    mschallenge:
         image: node:8.10
         mem_limit: 1G
         volumes:
-            - ./ms/event:/var/www/app
+            - ./ms/challenge:/var/www/app
         environment:
             NODE_ENV: development
             DSN_HOST_READ: dbsql
             DSN_HOST_WRITE: dbsql
             DSN_USERNAME: root
             DSN_PASSWORD: root
-            DSN_DBNAME: db_person
-            DSN_CHARSET: "utf8"
-            DSN_PORT: 3306
-        working_dir: /var/www/app
-        command: "npm start"
-        depends_on:
-            - dbsql
-    msmatch:
-        image: node:8.10
-        mem_limit: 1G
-        volumes:
-            - ./ms/match:/var/www/app
-        environment:
-            NODE_ENV: development
-            DSN_HOST_READ: dbsql
-            DSN_HOST_WRITE: dbsql
-            DSN_USERNAME: root
-            DSN_PASSWORD: root
-            DSN_DBNAME: db_person
+            DSN_DBNAME: challenge
             DSN_CHARSET: "utf8"
             DSN_PORT: 3306
         working_dir: /var/www/app
         #command: "npm start"
         depends_on:
             - dbsql
+        # REMOVER
         entrypoint: /bin/bash
         tty: true
         ports:
@@ -84,7 +68,5 @@ services:
             dockerfile: ./web/Dockerfile
             context: .
         depends_on:
-            - dbsql
             - msperson
-            - msevent
-            - msmatch
+            - mschallenge

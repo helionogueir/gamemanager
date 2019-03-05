@@ -1,0 +1,4 @@
+{
+    "home": "\\module\\home\\controller\\SignIn",
+    "home\/dashboard": "\\module\\home\\controller\\Dashboard"
+}

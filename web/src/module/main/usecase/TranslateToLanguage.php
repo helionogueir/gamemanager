@@ -33,25 +33,20 @@ class TranslateToLanguage implements UseCase
     private function loadPackage(string $package): stdClass
     {
         global $CFG, $PATH;
-        try {
-            $data = new stdClass();
-            $module = empty($package) ? 'main' : $package;
-            $filename = $PATH->dirroot
-                    . DIRECTORY_SEPARATOR . 'module'
-                    . DIRECTORY_SEPARATOR . $module
-                    . DIRECTORY_SEPARATOR . 'lang'
-                    . DIRECTORY_SEPARATOR . "{$CFG->environment->lang}.json";
-            if (file_exists($filename)) {
-                $metadata = json_decode(file_get_contents($filename));
-                if (JSON_ERROR_NONE === json_last_error() && ($metadata instanceof stdClass)) {
-                    $data = $metadata;
-                }
+        $data = new stdClass();
+        $module = empty($package) ? 'main' : $package;
+        $filename = $PATH->dirroot
+                . DIRECTORY_SEPARATOR . 'module'
+                . DIRECTORY_SEPARATOR . $module
+                . DIRECTORY_SEPARATOR . 'lang'
+                . DIRECTORY_SEPARATOR . "{$CFG->environment->lang}.json";
+        if (file_exists($filename)) {
+            $metadata = json_decode(file_get_contents($filename));
+            if (JSON_ERROR_NONE === json_last_error() && ($metadata instanceof stdClass)) {
+                $data = $metadata;
             }
-            return $data;
-        } catch (Exception $ex) {
-            throw $ex;
         }
-        return $this;
+        return $data;
     }
 
     private function replaceVariable(string $text, array $variables): string

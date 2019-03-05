@@ -2,10 +2,12 @@
 
 namespace module\main;
 
+use module\main\usecase\Route;
+
 interface Controller
 {
 
-    public function __construct(array $params);
+    public function __construct(Route $route);
 
-    public function render();
+    public function display();
 }

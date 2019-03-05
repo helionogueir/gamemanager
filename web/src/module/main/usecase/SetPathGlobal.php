@@ -17,20 +17,16 @@ class SetPathGlobal implements UseCase
     public function set(string $key, string $value): SetPathGlobal
     {
         global $PATH;
-        try {
-            if (!($PATH instanceof stdClass)) {
-                $PATH = new stdClass();
+        if (!($PATH instanceof stdClass)) {
+            $PATH = new stdClass();
+        }
+        if (!empty($key) && !empty($value)) {
+            if (file_exists($value)) {
+                $PATH->{$key} = $value;
             }
-            if (!empty($key) && !empty($value)) {
-                if (file_exists($value)) {
-                    $PATH->{$key} = $value;
-                }
-            }
-            if (empty($key) || empty($PATH->{$key})) {
-                throw (new Exception("Invalid path value {$value}"));
-            }
-        } catch (Exception $ex) {
-            throw $ex;
+        }
+        if (empty($key) || empty($PATH->{$key})) {
+            throw (new Exception("Invalid path value {$value}"));
         }
         return $this;
     }

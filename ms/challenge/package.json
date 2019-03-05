@@ -1,13 +1,11 @@
 {
-  "name": "msperson",
+  "name": "mschallenge",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
-    "start": "node index.js",
-    "pretest": "npm install",
-    "test": "/* ./node_modules/mocha/bin/mocha ./test/business */"
+    "prestart": "npm install --production",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +16,8 @@
   "dependencies": {
     "body-parser": "1.18.*",
     "express": "4.16.*",
+    "jsonwebtoken": "8.5.*",
     "knex": "0.16.*",
     "mysql": "2.16.*"
-  },
-  "devDependencies": {
-    "mocha": "6.0.*"
   }
 }

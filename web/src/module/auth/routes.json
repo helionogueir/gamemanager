@@ -1,0 +1,4 @@
+{
+    "auth\/login": "\\module\\auth\\controller\\LogIn",
+    "auth\/logout": "\\module\\auth\\controller\\LogOut"
+}

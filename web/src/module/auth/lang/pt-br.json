@@ -1,4 +1,5 @@
 {
     "auth:login:error": "Acesso não autorizado, por favor verifique seu email e senha e tente novamente",
-    "auth:login:success": "Login relaizado com sucesso"
+    "auth:login:success": "Login relaizado com sucesso",
+    "auth:logout": "Sair"
 }
