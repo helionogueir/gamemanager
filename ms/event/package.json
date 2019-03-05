@@ -18,7 +18,6 @@
     "express": "4.16.*",
     "jsonwebtoken": "8.5.*",
     "knex": "0.16.*",
-    "mocha": "6.0.*",
     "mysql": "2.16.*"
   }
 }
