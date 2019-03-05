@@ -4,8 +4,8 @@ namespace module\event\controller;
 
 use module\main\driver\UserSession;
 use module\main\driver\MustacheEngine;
-use module\event\usecase\SeekAllEvents;
 use module\main\controller\PrivateLayer;
+use module\event\usecase\SeekEventsByPersonId;
 
 class Init implements PrivateLayer
 {
@@ -19,7 +19,7 @@ class Init implements PrivateLayer
     {
         if ($user = (new UserSession())->get()) {
             echo (new MustacheEngine())->render("events", array(
-                'events' => (new SeekAllEvents())->seek($user->personid)
+                'events' => (new SeekEventsByPersonId())->seek($user->personid)
             ));
         }
     }

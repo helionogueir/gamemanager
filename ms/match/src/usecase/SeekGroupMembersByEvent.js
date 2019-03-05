@@ -1,3 +1,5 @@
+const path = require('path');
+const GroupMembersReduce = require(path.resolve('./src/entity/GroupMembersReduce'));
 module.exports = class SeekGroupMembersByEvent {
 
     constructor(db) {
@@ -11,7 +13,7 @@ module.exports = class SeekGroupMembersByEvent {
             SELECT
                 mg.id,
                 mg.type,
-                mg.name AS groupname,
+                mg.name,
                 tt.name AS teamname 
             FROM db_match.group mg
             INNER JOIN db_match.match mm
@@ -29,13 +31,13 @@ module.exports = class SeekGroupMembersByEvent {
                 eventid: eventid
             })).asCallback(function (err, result) {
                 if (err) throw err;
-                let data = new Array();
                 if ((undefined != result[0]) && (result[0] instanceof Array) && result[0].length) {
-                    for (let i = 0, row; row = result[0][i++];) {
-                        data.push(row);
-                    }
+                    (new GroupMembersReduce()).reduce(result[0], (rowSet) => {
+                        next(rowSet);
+                    });
+                } else {
+                    next(null);
                 }
-                next(data);
             });
         } catch (err) {
             throw err;

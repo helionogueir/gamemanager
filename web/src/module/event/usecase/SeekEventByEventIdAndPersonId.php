@@ -5,7 +5,7 @@ namespace module\event\usecase;
 use module\main\UseCase;
 use module\event\entity\Event_EvenId_Person_PersonId;
 
-class SeekEvent implements UseCase
+class SeekEventByEventIdAndPersonId implements UseCase
 {
 
     public function __construct()

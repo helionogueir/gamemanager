@@ -2,11 +2,12 @@
 
 namespace module\event\controller;
 
-use module\event\usecase\SeekEvent;
 use module\main\driver\UserSession;
 use module\main\driver\GetterMapping;
 use module\main\driver\MustacheEngine;
 use module\main\controller\PrivateLayer;
+use module\event\usecase\SeekEventByEventIdAndPersonId;
+use module\event\usecase\SeekGroupsByEventIdAndPersonId;
 
 class View implements PrivateLayer
 {
@@ -23,7 +24,10 @@ class View implements PrivateLayer
     {
         if ($user = (new UserSession())->get()) {
             echo (new MustacheEngine())->render("view", array(
-                'event' => (new SeekEvent())->seek($this->getter['eventid'], $user->personid)
+                'event' => (new SeekEventByEventIdAndPersonId())
+                        ->seek($this->getter['eventid'], $user->personid),
+                'groups' => (new SeekGroupsByEventIdAndPersonId())
+                        ->seek($this->getter['eventid'], $user->personid)
             ));
         }
     }

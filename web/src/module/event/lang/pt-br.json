@@ -2,5 +2,7 @@
     "head:title": "Eventos | GameManager",
     "page:title": "Eventos",
     "event:view": "Visualizar",
-    "event:notfound": "Não temos nenhum evento pra voce no momento"
+    "event:notfound": "Não temos nenhum evento pra voce no momento",
+    "groups:notfound": "Não temos nenhum grupo no momento",
+    "group:matches": "Partidas"
 }
