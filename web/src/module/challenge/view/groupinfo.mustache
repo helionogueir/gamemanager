@@ -1,0 +1,18 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Equipe</th>
+            <th scope="col">Vitórias</th>
+            <th scope="col">Saldo de Rounds</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{# teams }}
+        <tr>
+            <td>{{ teamname }}</td>
+            <td>{{ victories }}</td>
+            <td>{{ rounds }}</td>
+        </tr>
+        {{/ teams }}
+    </tbody>
+</table>

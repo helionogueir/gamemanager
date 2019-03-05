@@ -13,15 +13,19 @@ module.exports = class ChallengeMatch {
             SUM(cgm.id = IF((cm.avictory > cm.bvictory), cm.amemberid, cm.bmemberid)) AS victories,
             SUM(ABS(cm.avictory - cm.bvictory)) AS rounds
         FROM challenge.group_members cgm
+        INNER JOIN challenge.group cg
+            ON cg.id = cgm.groupid
         INNER JOIN challenge.match cm
             ON cgm.id IN (cm.amemberid, cm.bmemberid)
         INNER JOIN challenge.team ct
             ON ct.id = cgm.teamid
         WHERE cgm.groupid = :groupid
+        AND cg.stage = :stage
         GROUP BY cgm.id
         ORDER BY victories DESC, rounds DESC;
         `;
         this._db.raw(sql, new Object({
+            stage: 'group',
             groupid: groupid
         })).asCallback(function (err, result) {
             if (err) throw err;

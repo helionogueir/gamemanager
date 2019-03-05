@@ -9,9 +9,11 @@ module.exports = class ChallengeGroup {
         let sql = `
             SELECT cg.id, cg.name
             FROM challenge.group cg
-            WHERE cg.state = :state
+            WHERE cg.stage = :stage
+            AND cg.state = :state
             `;
         this._db.raw(sql, new Object({
+            stage: 'group',
             state: 1
         })).asCallback(function (err, result) {
             if (err) throw err;

@@ -7,6 +7,7 @@ use module\main\Usecase;
 class Route implements Usecase
 {
 
+    private $regexp = null;
     private $request = null;
     private $modulename = null;
     private $controllername = null;
@@ -17,6 +18,11 @@ class Route implements Usecase
         $this->setModulename();
         $this->setControllername();
         return $this;
+    }
+
+    public function getter(int $key)
+    {
+        return preg_replace($this->regexp, "\${$key}", $this->request);
     }
 
     public function getRequest()
@@ -62,7 +68,9 @@ class Route implements Usecase
             $routes = json_decode(file_get_contents($filename));
             if (JSON_ERROR_NONE == json_last_error()) {
                 foreach ($routes as $regexp => $classname) {
-                    if (preg_match("#^({$regexp})$#", $this->request)) {
+                    $pattern = "#^({$regexp})$#";
+                    if (preg_match($pattern, $this->request)) {
+                        $this->regexp = $pattern;
                         $this->controllername = $classname;
                         break;
                     }

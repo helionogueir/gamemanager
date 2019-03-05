@@ -6,45 +6,10 @@
 <div class="row">
     {{# groups }}
     <div class="col-md-4">
-        <div class="card mb-4 shadow-sm challenge-group-{{ id }}">
+        <div class="card mb-4 shadow-sm challenge-group" data-id="{{ id }}">
             <div class="card-body">
                 <h3 class="card-title">{{ name }}</h3>
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Equipe</th>
-                            <th scope="col">Vitórias</th>
-                            <th scope="col">Saldo de Rounds</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="challenge-group-info"></div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">{{# lang }}matches,challenge{{/ lang }}</button>

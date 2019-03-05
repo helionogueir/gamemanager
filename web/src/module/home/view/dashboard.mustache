@@ -24,7 +24,9 @@
             $(document).ready(function () {
                 var docuemntObject = this;
                 Dashboard.page('/challenge/groups', function (htmlText) {
-                    $('.dashboard-container', docuemntObject).html(htmlText);
+                    $('.dashboard-container', docuemntObject).html(htmlText).find('.challenge-group').each(function () {
+                        Challenge.group.info(this);
+                    });
                 });
             });
         </script>
