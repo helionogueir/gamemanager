@@ -3,7 +3,7 @@ const Database = require(path.resolve('./src/driver/Database'));
 const Authorization = require(path.resolve('./src/driver/Authorization'));
 const SeekCredential = require(path.resolve('./src/usecase/SeekCredential'));
 
-module.exports = class AuthorizePerson {
+module.exports = class Authorize {
 
   isAuthorized(personid, token, next) {
     try {

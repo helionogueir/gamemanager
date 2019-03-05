@@ -1,11 +1,11 @@
-module.exports = class SeekAllEvents {
+module.exports = class SeekEventByEventIdAndPersonId {
 
     constructor(db) {
         this._db = db;
         Object.freeze(this);
     }
 
-    seek(personid, next) {
+    seek(eventid, personid, next) {
         try {
             let sql = `
             SELECT
@@ -19,17 +19,20 @@ module.exports = class SeekAllEvents {
             INNER JOIN db_event.event ee
                 ON ee.id = eg.eventid
                 AND ee.state = 1
-            WHERE tt.ownerid = :personid
+            WHERE eg.eventid = :eventid
+            AND  tt.ownerid = :personid
             GROUP BY eg.eventid
             `;
             this._db.raw(sql, new Object({
+                eventid: eventid,
                 personid: personid
             })).asCallback(function (err, result) {
                 if (err) throw err;
-                let data = new Array();
+                let data = null;
                 if ((undefined != result[0]) && (result[0] instanceof Array) && result[0].length) {
                     for (let i = 0, row; row = result[0][i++];) {
-                        data.push(row);
+                        data = row;
+                        break;
                     }
                 }
                 next(data);

@@ -1,9 +1,9 @@
 const path = require('path');
 const express = require('express');
 const router = express.Router();
+const Event = require(path.resolve('./src/controller/Event'));
 const Response = require(path.resolve('./src/entity/Response'));
-const EventByPerson = require(path.resolve('./src/controller/EventByPerson'));
-const AuthorizePerson = require(path.resolve('./src/controller/AuthorizePerson'));
+const Authorize = require(path.resolve('./src/controller/Authorize'));
 
 router.options('/*', function (req, res) {
   try {
@@ -26,9 +26,9 @@ router.get('/:eventid/person/:personid', function (req, res) {
     if ((undefined !== req.params.eventid) &&
       (undefined !== req.params.personid) &&
       (undefined !== req.headers['authorization'])) {
-      (new AuthorizePerson()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
+      (new Authorize()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
         if (isAuthorized) {
-          (new EventByPerson()).seekRowByPersonId(req.params.eventid, req.params.personid, (result) => {
+          (new Event()).seekRowByEventIdAndPersonId(req.params.eventid, req.params.personid, (result) => {
             let code = (result) ? 200 : 404;
             (new Response()).format(code, result, (response) => {
               res.statusCode = response.statusCode;

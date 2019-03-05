@@ -1,28 +1,29 @@
-module.exports = class SeekGroupsAndMatches {
+module.exports = class SeekEventByPersonId {
 
     constructor(db) {
         this._db = db;
         Object.freeze(this);
     }
 
-    seek(eventid, personid, next) {
+    seek(personid, next) {
         try {
             let sql = `
             SELECT
-                mg.id,
-                mg.type,
-                mg.name,
-                mg.description
-            FROM db_match.group mg
+                eg.eventid,
+                ee.name,
+                ee.description
+            FROM db_event.guest eg
+            INNER JOIN db_team.team tt
+                ON tt.id = eg.teamid
+                AND tt.state = 1
             INNER JOIN db_event.event ee
-                ON ee.id = mg.eventid
+                ON ee.id = eg.eventid
                 AND ee.state = 1
-            WHERE mg.eventid = :eventid
-            AND mg.state = 1
-            GROUP BY mg.id
+            WHERE tt.ownerid = :personid
+            GROUP BY eg.eventid
             `;
             this._db.raw(sql, new Object({
-                eventid: eventid
+                personid: personid
             })).asCallback(function (err, result) {
                 if (err) throw err;
                 let data = new Array();

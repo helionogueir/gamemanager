@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
+    "prestart": "npm install --production",
     "start": "node index.js",
     "pretest": "npm install",
     "test": "/* ./node_modules/mocha/bin/mocha ./test/business */"
@@ -19,7 +19,9 @@
     "body-parser": "1.18.*",
     "express": "4.16.*",
     "knex": "0.16.*",
-    "mocha": "6.0.*",
     "mysql": "2.16.*"
+  },
+  "devDependencies": {
+    "mocha": "6.0.*"
   }
 }

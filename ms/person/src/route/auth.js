@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 const Response = require(path.resolve('./src/entity/Response'));
-const AuthUser = require(path.resolve('./src/controller/AuthUser'));
+const Person = require(path.resolve('./src/controller/Person'));
 
 router.options('/*', function (req, res) {
   try {
@@ -23,7 +23,7 @@ router.options('/*', function (req, res) {
 router.get('/:username', function (req, res) {
   try {
     if ((undefined !== req.params.username) && (undefined !== req.body.password)) {
-      (new AuthUser()).auth(req.params.username, req.body.password, (result) => {
+      (new Person()).auth(req.params.username, req.body.password, (result) => {
         let code = (result) ? 200 : 404;
         (new Response()).format(code, result, (response) => {
           res.statusCode = response.statusCode;

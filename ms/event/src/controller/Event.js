@@ -1,15 +1,15 @@
 const path = require('path');
 const Database = require(path.resolve('./src/driver/Database'));
-const SeekEvent = require(path.resolve('./src/usecase/SeekEvent'));
-const SeekAllEvents = require(path.resolve('./src/usecase/SeekAllEvents'));
+const SeekEventByPersonId = require(path.resolve('./src/usecase/SeekEventByPersonId'));
+const SeekEventByEventIdAndPersonId = require(path.resolve('./src/usecase/SeekEventByEventIdAndPersonId'));
 
-module.exports = class EventByPerson {
+module.exports = class Event {
 
   seekAllByPersonId(personid, next) {
     try {
       if ((undefined !== personid)) {
         const database = new Database();
-        (new SeekAllEvents(database.connect())).seek(personid, (events) => {
+        (new SeekEventByPersonId(database.connect())).seek(personid, (events) => {
           database.close();
           next(events);
         });
@@ -21,11 +21,11 @@ module.exports = class EventByPerson {
     }
   }
 
-  seekRowByPersonId(eventid, personid, next) {
+  seekRowByEventIdAndPersonId(eventid, personid, next) {
     try {
       if ((undefined !== eventid) && (undefined !== personid)) {
         const database = new Database();
-        (new SeekEvent(database.connect())).seek(eventid, personid, (event) => {
+        (new SeekEventByEventIdAndPersonId(database.connect())).seek(eventid, personid, (event) => {
           database.close();
           next(event);
         });

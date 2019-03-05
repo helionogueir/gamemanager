@@ -2,8 +2,8 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 const Response = require(path.resolve('./src/entity/Response'));
-const AuthorizePerson = require(path.resolve('./src/controller/AuthorizePerson'));
-const GroupByEventAndPerson = require(path.resolve('./src/controller/GroupByEventAndPerson'));
+const Authorize = require(path.resolve('./src/controller/Authorize'));
+const GroupMembers = require(path.resolve('./src/controller/GroupMembers'));
 
 router.options('/*', function (req, res) {
   try {
@@ -26,9 +26,9 @@ router.get('/event/:eventid/person/:personid', function (req, res) {
     if ((undefined !== req.params.eventid) &&
       (undefined !== req.params.personid) &&
       (undefined !== req.headers['authorization'])) {
-      (new AuthorizePerson()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
+      (new Authorize()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
         if (isAuthorized) {
-          (new GroupByEventAndPerson()).seekAllMatches(req.params.eventid, req.params.personid, (result) => {
+          (new GroupMembers()).seekByEvent(req.params.eventid, (result) => {
             let total = (result instanceof Array) ? result.length : 0;
             let code = (total) ? 200 : 404;
             (new Response()).format(code, result, (response) => {

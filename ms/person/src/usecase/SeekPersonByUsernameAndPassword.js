@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-module.exports = class SeekPerson {
+module.exports = class SeekPersonByUsernameAndPassword {
 
     constructor(db) {
         this._db = db;

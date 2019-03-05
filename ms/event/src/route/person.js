@@ -1,9 +1,9 @@
 const path = require('path');
 const express = require('express');
 const router = express.Router();
+const Event = require(path.resolve('./src/controller/Event'));
 const Response = require(path.resolve('./src/entity/Response'));
-const EventByPerson = require(path.resolve('./src/controller/EventByPerson'));
-const AuthorizePerson = require(path.resolve('./src/controller/AuthorizePerson'));
+const Authorize = require(path.resolve('./src/controller/Authorize'));
 
 router.options('/*', function (req, res) {
   try {
@@ -24,9 +24,9 @@ router.options('/*', function (req, res) {
 router.get('/:personid', function (req, res) {
   try {
     if ((undefined !== req.params.personid) && (undefined !== req.headers['authorization'])) {
-      (new AuthorizePerson()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
+      (new Authorize()).isAuthorized(req.params.personid, req.headers['authorization'], (isAuthorized) => {
         if (isAuthorized) {
-          (new EventByPerson()).seekAllByPersonId(req.params.personid, (result) => {
+          (new Event()).seekAllByPersonId(req.params.personid, (result) => {
             let total = (result instanceof Array) ? result.length : 0;
             let code = (total) ? 200 : 404;
             (new Response()).format(code, result, (response) => {

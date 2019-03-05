@@ -63,9 +63,13 @@ services:
             DSN_CHARSET: "utf8"
             DSN_PORT: 3306
         working_dir: /var/www/app
-        command: "npm start"
+        #command: "npm start"
         depends_on:
             - dbsql
+        entrypoint: /bin/bash
+        tty: true
+        ports:
+            - 3000:3000
     web:
         image: gamemanager/web
         mem_limit: 2G
@@ -80,5 +84,7 @@ services:
             dockerfile: ./web/Dockerfile
             context: .
         depends_on:
+            - dbsql
             - msperson
             - msevent
+            - msmatch
