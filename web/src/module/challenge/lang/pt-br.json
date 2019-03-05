@@ -1,4 +1,6 @@
 {
     "title": "Desafio",
-    "matches": "Partidas"
+    "matches": "Partidas",
+    "group:title": "Grupos",
+    "8finals:title": "oitavas de final"
 }
