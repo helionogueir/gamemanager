@@ -13,13 +13,15 @@ router.options('/', function (req, res) {
   (new HttpResponse()).prepare(200, options, res);
 });
 
-router.get('/', function (req, res) {
+router.get('/:stage', function (req, res) {
   try {
-    if ((undefined !== req.body.personid) && (undefined !== req.headers['authorization'])) {
+    if ((undefined !== req.params.stage) &&
+      (undefined !== req.body.personid) &&
+      (undefined !== req.headers['authorization'])) {
       (new Authentication()).authorized(req.body.personid, req.headers['authorization'], (authorized) => {
         if (!authorized)(new HttpResponse()).prepare(401, null, res);
         else {
-          (new Group()).seek((result) => {
+          (new Group()).seekByStage(req.params.stage, (result) => {
             let code = (result instanceof Object) ? 200 : 404;
             (new HttpResponse()).prepare(code, result, res);
           });

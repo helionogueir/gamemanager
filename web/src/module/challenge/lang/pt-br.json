@@ -1,9 +1,10 @@
 {
     "title": "Desafio",
     "matches": "Partidas",
-    "group:title": "Grupos",
-    "eightfinals:title": "Oitavas de final",
-    "fourfinals:title": "Quartas de Final",
-    "semifinal:title": "Semifinal",
-    "final:title": "Final"
+    "cc:title": "Grupos",
+    "po:title": "Playoffs",
+    "f8:title": "Oitavas de final",
+    "f4:title": "Quartas de Final",
+    "fs:title": "Semifinal",
+    "ff:title": "Final"
 }

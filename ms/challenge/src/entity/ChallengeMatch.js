@@ -8,24 +8,22 @@ module.exports = class ChallengeMatch {
     seekInfoByGroupId(groupid, next) {
         let sql = `
         SELECT
-            cgm.id,
-            ct.name AS 'teamname',
-            SUM(cgm.id = IF((cm.avictory > cm.bvictory), cm.amemberid, cm.bmemberid)) AS victories,
+            ct.id AS teamid,
+            ct.name AS teamname,
+            SUM(ct.id = IF((cm.avictory > cm.bvictory), cm.ateamid, cm.bteamid)) AS victories,
             SUM(ABS(cm.avictory - cm.bvictory)) AS rounds
-        FROM challenge.group_members cgm
-        INNER JOIN challenge.group cg
-            ON cg.id = cgm.groupid
+        FROM challenge.team ct
         INNER JOIN challenge.match cm
-            ON cgm.id IN (cm.amemberid, cm.bmemberid)
-        INNER JOIN challenge.team ct
-            ON ct.id = cgm.teamid
-        WHERE cgm.groupid = :groupid
-        AND cg.stage = :stage
-        GROUP BY cgm.id
-        ORDER BY victories DESC, rounds DESC;
+            ON ct.id IN (cm.ateamid, cm.bteamid)
+        INNER JOIN challenge.group cg
+            ON cg.id = cm.groupid
+            AND cg.state = 1
+        WHERE ct.state = 1
+        AND cg.id = :groupid
+        GROUP BY ct.id
+        ORDER BY victories DESC, rounds DESC
         `;
         this._db.raw(sql, new Object({
-            stage: 'group',
             groupid: groupid
         })).asCallback(function (err, result) {
             if (err) throw err;

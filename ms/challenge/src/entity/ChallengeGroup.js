@@ -5,7 +5,7 @@ module.exports = class ChallengeGroup {
         Object.freeze(this);
     }
 
-    seekAll(next) {
+    seekByStage(stage, next) {
         let sql = `
             SELECT cg.id, cg.name
             FROM challenge.group cg
@@ -13,7 +13,7 @@ module.exports = class ChallengeGroup {
             AND cg.state = :state
             `;
         this._db.raw(sql, new Object({
-            stage: 'group',
+            stage: stage,
             state: 1
         })).asCallback(function (err, result) {
             if (err) throw err;

@@ -4,16 +4,20 @@ const ChallengeGroup = require(path.resolve('./src/entity/ChallengeGroup'));
 
 module.exports = class Group {
 
-  seek(next) {
-    try {
-      const database = new Database();
-      (new ChallengeGroup(database.connect())).seekAll((groups) => {
+  seekByStage(stage, next) {
+    if (undefined !== stage) {
+      try {
+        const database = new Database();
+        (new ChallengeGroup(database.connect())).seekByStage(stage, (groups) => {
+          database.close();
+          next(groups);
+        });
+      } catch (err) {
         database.close();
-        next(groups);
-      });
-    } catch (err) {
-      database.close();
-      throw err;
+        throw err;
+      }
+    } else {
+      next(null);
     }
   }
 

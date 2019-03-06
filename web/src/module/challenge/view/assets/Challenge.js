@@ -7,7 +7,7 @@ var Challenge = new function () {
                     async: true,
                     type: "get",
                     datatype: 'html',
-                    url: '/challenge/group/' + groupid + '/info',
+                    url: '/challenge/group/' + groupid + '/match/info',
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.error(errorThrown);
                     },

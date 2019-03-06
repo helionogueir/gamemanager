@@ -7,7 +7,7 @@ use module\main\driver\MustacheEngine;
 use module\main\controller\PrivateLayer;
 use module\challenge\entity\Challenge_Group_GroupId_Match_Info;
 
-class GroupInfo implements PrivateLayer
+class GroupMatchInfo implements PrivateLayer
 {
 
     private $route = null;
