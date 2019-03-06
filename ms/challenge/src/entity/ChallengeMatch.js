@@ -10,8 +10,7 @@ module.exports = class ChallengeMatch {
         SELECT
             ct.id AS teamid,
             ct.name AS teamname,
-            SUM(ct.id = IF((cm.avictory > cm.bvictory), cm.ateamid, cm.bteamid)) AS victories,
-            SUM(ABS(cm.avictory - cm.bvictory)) AS rounds
+            SUM(ct.id = IF((cm.avictory > cm.bvictory), cm.ateamid, cm.bteamid)) AS victories
         FROM challenge.team ct
         INNER JOIN challenge.match cm
             ON ct.id IN (cm.ateamid, cm.bteamid)

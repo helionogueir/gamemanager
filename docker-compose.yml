@@ -10,9 +10,6 @@ services:
             - MYSQL_ROOT_PASSWORD=root
         restart: always
         command: --default-authentication-plugin=mysql_native_password
-        # REMOVER
-        ports:
-            - 3306:3306
     msperson:
         image: node:8.10
         mem_limit: 1G
@@ -46,14 +43,9 @@ services:
             DSN_CHARSET: "utf8"
             DSN_PORT: 3306
         working_dir: /var/www/app
-        #command: "npm start"
+        command: "npm start"
         depends_on:
             - dbsql
-        # REMOVER
-        entrypoint: /bin/bash
-        tty: true
-        ports:
-            - 3000:3000
     web:
         image: gamemanager/web
         mem_limit: 2G

@@ -1,6 +1,8 @@
 {
     "title": "Desafio",
     "matches": "Partidas",
+    "team": "Equipe",
+    "victories": "Vitórias",
     "cc:title": "Grupos",
     "po:title": "Playoffs",
     "f8:title": "Oitavas de final",
