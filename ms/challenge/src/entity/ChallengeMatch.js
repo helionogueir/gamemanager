@@ -5,6 +5,36 @@ module.exports = class ChallengeMatch {
         Object.freeze(this);
     }
 
+    seekByGroupId(groupid, next) {
+        let sql = `
+        SELECT
+            cm.id,
+            act.name AS ateamname,
+            cm.avictory,
+            bct.name AS bteamname,
+            cm.bvictory
+        FROM challenge.match cm
+        INNER JOIN challenge.team act
+            ON act.id = cm.ateamid
+        INNER JOIN challenge.team bct
+            ON bct.id = cm.bteamid
+        WHERE cm.groupid = :groupid
+        GROUP BY cm.id
+        `;
+        this._db.raw(sql, new Object({
+            groupid: groupid
+        })).asCallback(function (err, result) {
+            if (err) throw err;
+            let data = new Array();
+            if ((undefined != result[0]) && (result[0] instanceof Array) && result[0].length) {
+                data = result[0];
+            }
+            if (next instanceof Function) {
+                next(data);
+            }
+        });
+    }
+
     seekInfoByGroupId(groupid, next) {
         let sql = `
         SELECT

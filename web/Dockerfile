@@ -14,6 +14,9 @@ RUN echo "alias ll=\"ls -alh --color\"" | tee --append /root/.bashrc;
 # Update and Upgrade
 RUN yum -y update && yum -y upgrade
 
+# Install MySQL
+RUN yum install -y mysql
+
 # Install Nginx Server
 RUN yum install -y nginx
 RUN echo "NETWORKING=yes" > /etc/sysconfig/network

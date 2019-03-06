@@ -1,6 +1,6 @@
 var Dashboard = new function () {
-    this.page = function (uri, next) {
-        if ((undefined !== uri) && next instanceof Function) {
+    this.container = function (uri) {
+        if ((undefined !== uri)) {
             jQuery.ajax({
                 async: true,
                 type: "get",
@@ -8,10 +8,27 @@ var Dashboard = new function () {
                 url: uri,
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error(errorThrown);
-                    next(null);
                 },
                 success: function (htmlText) {
-                    next(htmlText);
+                    $('.dashboard-container', document).html(htmlText).find('.challenge-group').each(function () {
+                        Challenge.group.info(this);
+                    });
+                }
+            });
+        }
+    };
+    this.detail = function (uri) {
+        if ((undefined !== uri)) {
+            jQuery.ajax({
+                async: true,
+                type: "get",
+                datatype: 'html',
+                url: uri,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(errorThrown);
+                },
+                success: function (htmlText) {
+                    $('.dashboard-detail', document).html(htmlText);
                 }
             });
         }

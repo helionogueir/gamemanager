@@ -19,6 +19,9 @@
 -- Table structure for table `group`
 --
 
+CREATE SCHEMA `challenge` DEFAULT CHARACTER SET utf8 ;
+USE `challenge`;
+
 DROP TABLE IF EXISTS `group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

@@ -1,4 +1,5 @@
 {
     "challenge\/groups": "\\module\\challenge\\controller\\Groups",
+    "challenge\/group\/(\\d{1,})\/match": "\\module\\challenge\\controller\\GroupMatch",
     "challenge\/group\/(\\d{1,})\/match\/info": "\\module\\challenge\\controller\\GroupMatchInfo"
 }

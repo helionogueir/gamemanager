@@ -37,6 +37,30 @@ router.get('/:stage', function (req, res) {
   }
 });
 
+router.get('/:groupid/match', function (req, res) {
+  try {
+    if ((undefined !== req.body.personid) &&
+      (undefined !== req.params.groupid) &&
+      (undefined !== req.headers['authorization'])) {
+      (new Authentication()).authorized(req.body.personid, req.headers['authorization'], (authorized) => {
+        if (!authorized)(new HttpResponse()).prepare(401, null, res);
+        else {
+          (new Match()).seekByGroupId(req.params.groupid, (result) => {
+            let code = (result instanceof Object) ? 200 : 404;
+            (new HttpResponse()).prepare(code, result, res);
+          });
+        }
+      });
+    } else {
+      (new HttpResponse()).prepare(400, null, res);
+    }
+  } catch (err) {
+    (new HttpResponse()).prepare(500, {
+      message: `${err.stack}`
+    }, res);
+  }
+});
+
 router.get('/:groupid/match/info', function (req, res) {
   try {
     if ((undefined !== req.body.personid) &&

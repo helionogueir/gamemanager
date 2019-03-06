@@ -19,6 +19,9 @@
 -- Table structure for table `person`
 --
 
+CREATE SCHEMA `person` DEFAULT CHARACTER SET utf8 ;
+USE `person`;
+
 DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

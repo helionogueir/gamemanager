@@ -4,15 +4,16 @@ services:
         image: mysql:5.6
         mem_limit: 2G
         cpuset: 0,1
-        volumes:
-            - ./dbsql/mysql:/var/lib/mysql
+        #volumes:
+        #    - ./dbsql/mysql:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
         restart: always
         command: --default-authentication-plugin=mysql_native_password
     msperson:
         image: node:8.10
-        mem_limit: 1G
+        mem_limit: 2G
+        cpuset: 0,1
         volumes:
             - ./ms/person:/var/www/app
         environment:
@@ -30,7 +31,8 @@ services:
             - dbsql
     mschallenge:
         image: node:8.10
-        mem_limit: 1G
+        mem_limit: 2G
+        cpuset: 0,1
         volumes:
             - ./ms/challenge:/var/www/app
         environment:
@@ -55,10 +57,12 @@ services:
         volumes:
             - ./web/server.conf:/etc/nginx/conf.d/server.conf
             - ./web/docker-entrypoint.sh:/root/docker-entrypoint.sh
+            - ./web/db:/root/db
             - ./web/src:/var/www/app
         build:
             dockerfile: ./web/Dockerfile
             context: .
         depends_on:
+            - dbsql
             - msperson
             - mschallenge

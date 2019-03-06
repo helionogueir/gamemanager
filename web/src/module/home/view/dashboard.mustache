@@ -15,19 +15,17 @@
             <span>{{ USER.nickname }},&nbsp;</span>
             <a href="/auth/logout" class="alert-link">{{# lang }}auth:logout,auth{{/ lang }}</a>
         </div>
-        <div class="dashboard-container container-fluid"></div>
+        <div class="row">
+            <div class="dashboard-container col-md-8"></div>
+            <div class="dashboard-detail col-md-4" style="padding:20px 0;background-color:#fafafa"></div>
+        </div>
         <script src="/main/assets/jquery/jquery.min.js"></script>
         <script src="/main/assets/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="/challenge/assets/Challenge.js"></script>
         <script src="/home/assets/Dashboard.js"></script>
         <script>
             $(document).ready(function () {
-                var docuemntObject = this;
-                Dashboard.page('/challenge/groups', function (htmlText) {
-                    $('.dashboard-container', docuemntObject).html(htmlText).find('.challenge-group').each(function () {
-                        Challenge.group.info(this);
-                    });
-                });
+                Dashboard.container('/challenge/groups');
             });
         </script>
     </body>
