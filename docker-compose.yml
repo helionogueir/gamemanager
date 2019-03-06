@@ -4,8 +4,6 @@ services:
         image: mysql:5.6
         mem_limit: 2G
         cpuset: 0,1
-        #volumes:
-        #    - ./dbsql/mysql:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
         restart: always
