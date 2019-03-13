@@ -72,7 +72,8 @@ CREATE TABLE `match` (
   KEY `fk_match_ateamid_idx` (`ateamid`),
   KEY `fk_match_bteamid_idx` (`bteamid`),
   CONSTRAINT `fk_match_ateamid` FOREIGN KEY (`ateamid`) REFERENCES `team` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_match_bteamid` FOREIGN KEY (`bteamid`) REFERENCES `team` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_match_bteamid` FOREIGN KEY (`bteamid`) REFERENCES `team` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_match_groupid` FOREIGN KEY (`groupid`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
