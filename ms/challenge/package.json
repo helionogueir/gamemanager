@@ -17,7 +17,7 @@
     "body-parser": "1.18.*",
     "express": "4.16.*",
     "jsonwebtoken": "8.5.*",
-    "knex": "0.16.*",
+    "knex": "0.19.*",
     "mysql": "2.16.*"
   }
 }
