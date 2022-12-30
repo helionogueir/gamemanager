@@ -20,6 +20,6 @@
     "mysql": "2.16.*"
   },
   "devDependencies": {
-    "mocha": "6.0.*"
+    "mocha": "10.2.*"
   }
 }
